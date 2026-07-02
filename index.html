@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>For My Crush</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="hearts-fall" id="heartsFall" aria-hidden="true"></div>
+
+<div class="heart-bg" aria-hidden="true">
+  <svg viewBox="0 0 32 29.6" class="heart-svg" aria-hidden="true">
+    <path d="M23.6 0c-2.9 0-5.4 1.7-6.6 4.1C15.8 1.7 13.3 0 10.4 0 4.6 0 0 4.6 0 10.4c0 11.6 16 19.2 16 19.2s16-7.6 16-19.2C32 4.6 27.4 0 23.6 0z"/>
+  </svg>
+</div>
+
+<main class="center">
+  <h1>Hey Kawyinsola🌸</h1>
+  <p class="lead">I've been meaning to tell you something. tap below.</p>
+  <button id="openBtn" class="link-btn">Tap the link</button>
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <p id="prompt">Quick question before I say anything else... are you single? 👀</p>
+
+    <div id="choices" class="choices">
+      <button id="singleBtn" class="choice">I'm single</button>
+      <button id="takenBtn" class="choice">I'm taken</button>
+    </div>
+
+    <div id="result" class="result" hidden>
+      <div id="singleContent" hidden>
+        <h3>Then this is for you 💌</h3>
+        <ul id="messages">
+          <li>Every time you walk into a room everything else gets a little quieter for me.</li>
+          <li>I don't know if you've noticed me the way I've noticed you, but I hope you have.</li>
+          <li>You're the reason I keep finding excuses to say hi.</li>
+        </ul>
+        <p class="cta-text">If any of that made you smile, I'd love to hear from you — no pressure, just be yourself:</p>
+        <p>Text me here: <a id="smsLink" href="sms:+1234567890">+2349 0418 08503</a></p>
+      </div>
+
+      <div id="takenContent" hidden>
+        <h3>Then I'll just say this 💔</h3>
+        <p>I wish things were different, and that I'd told you sooner. Whoever gets to love you is lucky  I hope they know that. Keep shining, always.And if you don't mind you we can still be friends </p>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button id="closeBtn" class="choice">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

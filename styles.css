@@ -1,0 +1,139 @@
+:root{
+  --pink:#ffb6d5;
+  --deep-pink:#ff7aa2;
+  --hot-pink:#ff4d88;
+  --ink:#3a2130;
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Arial,sans-serif}
+
+body{
+  background:linear-gradient(180deg,var(--pink) 0%,#ffd0e6 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);
+  position:relative;overflow:hidden;
+  min-height:100vh;
+}
+
+/* ---------- background watermark heart ---------- */
+.heart-bg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
+.heart-svg{width:80vmin;height:80vmin;fill:var(--deep-pink);opacity:0.12;transform:rotate(-10deg);}
+
+/* ---------- falling hearts ---------- */
+.hearts-fall{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+
+.falling-heart{
+  position:absolute;
+  top:-10vh;
+  font-size:1.4rem;
+  color:var(--hot-pink);
+  opacity:0.75;
+  animation-name:fall, sway;
+  animation-timing-function:linear, ease-in-out;
+  animation-iteration-count:infinite, infinite;
+  will-change:transform, top;
+  user-select:none;
+}
+
+@keyframes fall{
+  from{ top:-10vh; }
+  to{ top:110vh; }
+}
+
+@keyframes sway{
+  0%,100%{ transform:translateX(0) rotate(0deg); }
+  50%{ transform:translateX(18px) rotate(12deg); }
+}
+
+/* ---------- main content ---------- */
+.center{
+  position:relative;z-index:2;text-align:center;padding:2rem;border-radius:16px;
+  animation:fadeSlideUp 0.8s ease both;
+}
+
+@keyframes fadeSlideUp{
+  from{ opacity:0; transform:translateY(24px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.lead{opacity:0.9}
+
+.link-btn{
+  background:transparent;border:2px solid rgba(255,255,255,0.6);padding:12px 20px;
+  border-radius:999px;color:#600;cursor:pointer;font-weight:600;
+  transition:transform 0.15s ease, background 0.2s ease;
+}
+.link-btn:hover{background:rgba(255,255,255,0.35)}
+.link-btn:active{transform:translateY(1px) scale(0.98)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:10}
+.modal[aria-hidden="false"]{display:flex}
+
+.modal-backdrop{
+  position:absolute;inset:0;background:rgba(0,0,0,0.35);backdrop-filter:blur(4px);
+  animation:fadeIn 0.25s ease both;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; }
+  to{ opacity:1; }
+}
+
+.modal-content{
+  position:relative;background:linear-gradient(180deg,rgba(255,255,255,0.98),#fff);
+  padding:22px;border-radius:14px;max-width:420px;width:90%;
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);z-index:2;
+  animation:slideUpIn 0.35s cubic-bezier(.2,.8,.3,1.2) both;
+}
+
+@keyframes slideUpIn{
+  from{ opacity:0; transform:translateY(40px) scale(0.96); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+#prompt{font-weight:600;font-size:1.05rem}
+
+.choices{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.choice{
+  padding:10px 14px;border-radius:8px;border:none;background:var(--deep-pink);color:white;
+  cursor:pointer;transition:transform 0.15s ease, background 0.2s ease;
+}
+.choice:hover{background:var(--hot-pink)}
+.choice:active{transform:scale(0.96)}
+.choice:last-child{background:#886}
+
+.result{margin-top:12px;animation:slideUpIn 0.3s ease both}
+
+#messages{padding-left:1.1rem;text-align:left}
+#messages li{margin-bottom:8px;line-height:1.4}
+
+.cta-text{font-size:0.92rem;opacity:0.85;margin-top:14px}
+
+#smsLink{color:var(--hot-pink);font-weight:600;text-decoration:none}
+#smsLink:hover{text-decoration:underline}
+
+.modal-actions{display:flex;justify-content:center;margin-top:14px}
+
+/* ---------- mobile ---------- */
+@media (max-width:420px){
+  .heart-svg{width:120vmin;height:120vmin;opacity:0.08}
+  .center{padding:1.4rem}
+  h1{font-size:1.5rem}
+  .modal-content{padding:18px;width:92%}
+  .choices{flex-direction:column}
+  .choice{width:100%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .falling-heart{animation:none;display:none}
+  .center, .modal-backdrop, .modal-content, .result{animation:none}
+}
